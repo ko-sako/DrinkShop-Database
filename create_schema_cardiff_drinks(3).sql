@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS online_activity;
-
 CREATE TABLE online_activity (
 	activity_id int NOT NULL AUTO_INCREMENT,
 	client_id int,
@@ -16,6 +15,16 @@ CREATE TABLE regions (
 	CONSTRAINT regions_PK PRIMARY KEY (region_id)
 );
 
+DROP TABLE IF EXISTS clients;
+CREATE TABLE clients (
+	client_id int NOT NULL AUTO_INCREMENT,
+	name varchar(100),
+	website varchar(50),
+	flagship_poc varchar(50),
+	salesperson_id int,
+	CONSTRAINT clients_PK PRIMARY KEY (client_id),
+	CONSTRAINT FK_salespersons FOREIGN KEY (salesperson_id) REFERENCES salespersons(salesperson_id)  -- PK and FK must be of the same data type and of the same size!
+);
 
 DROP TABLE IF EXISTS placed_orders;
 CREATE TABLE placed_orders (
